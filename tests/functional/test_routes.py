@@ -53,6 +53,10 @@ def test_delete_account(testing_client):
     WHEN the '/accounts' page is posted to (DELETE)
     THEN check the response is valid
     """
+    response = testing_client.post(
+        "/accounts", json={'name': 'John Doe', 'currency': '€', 'country': 'Spain'}
+    )
+    
     response = testing_client.delete('/accounts/1')
     assert response.status_code == 200
 
