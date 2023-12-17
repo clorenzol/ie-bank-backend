@@ -33,22 +33,20 @@ def test_create_account(testing_client):
         '/accounts', json={'name': 'John Doe', 'currency': '€', 'country': 'Spain'})
     assert response.status_code == 200
 
-
-def test_get_account_details(testing_client):
-    """
-    GIVEN a Flask application
-    WHEN the '/accounts/1' page is requested (GET) to view details of an account with ID 1
-    THEN check the response is valid
-    """
-    response = testing_client.get('/accounts/1')
-    assert response.status_code == 200
-
 def test_update_account(testing_client):
     """
     GIVEN a Flask application
-    WHEN the '/accounts/1' page is posted to (PUT) to update details of an account with ID 1
+    WHEN the '/accounts' page is posted to (PUT)
     THEN check the response is valid
     """
-    response = testing_client.put(
-        '/accounts/1', json={'name': 'Updated Name', 'currency': 'USD', 'country': 'USA'})
+    response = testing_client.put('/accounts/1', json={'name': 'John Doe', 'country': 'Spain'})
+    assert response.status_code == 200
+
+def test_get_account(testing_client):
+    """
+    GIVEN a Flask application
+    WHEN the '/accounts' page is requested (GET)
+    THEN check the response is valid
+    """
+    response = testing_client.get('/accounts/1')
     assert response.status_code == 200
