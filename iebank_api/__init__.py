@@ -4,7 +4,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 ####### IMPORT THIS
-from applicationinsights.flask.ext import AppInsights
+#from applicationinsights.flask.ext import AppInsights
 
 app = Flask(__name__)
 
@@ -36,11 +36,3 @@ with app.app_context():
 CORS(app)
 
 from iebank_api import routes
-
-if os.getenv("ENV") == "dev" or os.getenv("ENV") == "uat":
-    appinsights = AppInsights(app)
-
-    @app.after_request
-    def after_request(response):
-        appinsights.flush()
-        return response
